@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import axios from 'axios';
 export default class CreateMovie extends Component {
 
 constructor(props){
@@ -50,6 +50,24 @@ constructor(props){
         console.log(`movie genre: ${this.state.movie_genre}`);
         console.log(`movie year: ${this.state.movie_year}`);
 
+        // create new movie object
+        // uses values entered by the user in the form
+        const newMovie = {
+            movie_title: this.state.movie_title,
+            movie_year: this.state.movie_year,
+            movie_genre: this.state.movie_genre
+        }
+        // make axios call (calls post method from axios library)
+        // pass in string containing URL of endpoint of backend server
+        // that endpoint accepts incoming POST requests which contain data of a new movie oject
+        axios.post('http://localhost:4000/movies/add', newMovie)
+            // attach a 'then' call which is activated once the response arrives
+            // recieves argument which is res (response object)
+            .then(res => console.log(res.data));
+            // returns user to default route after they submit
+            this.props.history.push('/');
+            
+
         // set state once form is submitted
         this.setState({
             movie_title: '',
@@ -61,7 +79,7 @@ constructor(props){
 
     render() {
         return (
-            <div style={{marginTop: 20}}>
+            <div className="container" style={{marginTop: 20}}>
                 <h2>Create New Movie Object</h2>
                 {/* binding onsubmit event from the form to be handled 
                 by the onsubmit method of the component*/}

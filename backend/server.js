@@ -18,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // used to connect to mongodb database
-// mongodb listening on port 27017/table name is movies
+// mongodb listening on port 27017 / table name is movies
 mongoose.connect('mongodb://127.0.0.1:27017/movies', { useNewUrlParser: true });
 // retrieve ref to connection object
 const connection = mongoose.connection;
@@ -42,7 +42,6 @@ movieRoutes.route('/').get(function(req, res){
     });
 });
 
-
 // route needs to accept a param, which is the id
 // use get to accept http requests and will be handled by a callback function
 movieRoutes.route('/:id').get(function(req, res){
@@ -59,7 +58,7 @@ movieRoutes.route('/add').post(function(req, res){
             res.status(200).json({'movie': 'movie added successfuly'});
         })
         .catch(err=>{
-            res.status(400).send('adding new movie failed');
+            res.status(400).send('Failed to add new movie');
         });
 });
 

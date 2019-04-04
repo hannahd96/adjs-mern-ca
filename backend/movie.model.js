@@ -15,4 +15,3 @@ let Movie = new Schema({
 });
 
 module.exports = mongoose.model('Movie', Movie);
-
