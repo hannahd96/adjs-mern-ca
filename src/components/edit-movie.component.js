@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default class EditMovie extends Component {
@@ -74,72 +75,78 @@ export default class EditMovie extends Component {
 
     render() {
         return (
-            <div className="container">
-                {/* jsx form allowing users to edit existing values */}
+            <div className="container" style={{ marginTop:100 }}>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        {/* jsx form allowing users to edit existing values */}
                 <h3>Update Movie</h3>
-               
-                {/* form element uses on submit to assign eventhandler for onsubmit event */}
-                {/* a request (with new values) will be sent out to backend */}
+               <br></br>
+               {/* form element uses on submit to assign eventhandler for onsubmit event */}
+               {/* a request (with new values) will be sent out to backend */}
 
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Title: </label>
-                        {/* the state of the component will be updated with the values */}
-                        <input  type="text" 
-                                className="form-control" 
-                                value={this.state.movie_title}
-                                onChange={this.onChangeMovieTitle}>
-                        </input>    
+               <form onSubmit={this.onSubmit}>
+                   <div className="form-group">
+                       <label>Title: </label>
+                       {/* the state of the component will be updated with the values */}
+                       <input  type="text" 
+                               className="form-control" 
+                               value={this.state.movie_title}
+                               onChange={this.onChangeMovieTitle}>
+                       </input>    
+                   </div>
+                   <div className="form-group">
+                       <label>Year: </label>
+                       <input  type="text" 
+                               className="form-control" 
+                               value={this.state.movie_year}
+                               onChange={this.onChangeMovieYear}>
+                       </input>    
+                   </div>
+                   <div className="form-group">
+                           <div className="form-check form-check-inline">
+                               <input  className="form-check-input" 
+                                       type="radio" 
+                                       name="genreButtons" 
+                                       id="genreHorror" 
+                                       value="Horror" 
+                                       checked={this.state.movie_genre==='Horror'} 
+                                       onChange={this.onChangeMovieGenre}
+                                       />
+                               <label className="form-check-label">Horror</label>
+                           </div>
+                           <div className="form-check form-check-inline">
+                               <input  className="form-check-input" 
+                                       type="radio" 
+                                       name="genreButtons" 
+                                       id="genreComedy" 
+                                       value="Comedy" 
+                                       checked={this.state.movie_genre==='Comedy'} 
+                                       onChange={this.onChangeMovieGenre}
+                                       />
+                               <label className="form-check-label">Comedy</label>
+                           </div>
+                           <div className="form-check form-check-inline">
+                               <input  className="form-check-input" 
+                                       type="radio" 
+                                       name="genreButtons" 
+                                       id="genreRomance" 
+                                       value="Romance" 
+                                       checked={this.state.movie_genre==='Romance'} 
+                                       onChange={this.onChangeMovieGenre}
+                                       />
+                               <label className="form-check-label">Romance</label>
+                           </div>
+                           <br></br><br></br>
+                           <div className="form-group">
+                           <Link to="/" className="btn btn-warning" id="cancel_btn">Cancel</Link>
+                               <input type="submit" value="Update Movie" className="btn btn-primary">
+                               </input>
+                           </div>
+                   </div>
+               </form> 
                     </div>
-                    <div className="form-group">
-                        <label>Year: </label>
-                        <input  type="text" 
-                                className="form-control" 
-                                value={this.state.movie_year}
-                                onChange={this.onChangeMovieYear}>
-                        </input>    
-                    </div>
-                    <div className="form-group">
-                            <div className="form-check form-check-inline">
-                                <input  className="form-check-input" 
-                                        type="radio" 
-                                        name="genreButtons" 
-                                        id="genreHorror" 
-                                        value="Horror" 
-                                        checked={this.state.movie_genre==='Horror'} 
-                                        onChange={this.onChangeMovieGenre}
-                                        />
-                                <label className="form-check-label">Horror</label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <input  className="form-check-input" 
-                                        type="radio" 
-                                        name="genreButtons" 
-                                        id="genreComedy" 
-                                        value="Comedy" 
-                                        checked={this.state.movie_genre==='Comedy'} 
-                                        onChange={this.onChangeMovieGenre}
-                                        />
-                                <label className="form-check-label">Comedy</label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <input  className="form-check-input" 
-                                        type="radio" 
-                                        name="genreButtons" 
-                                        id="genreRomance" 
-                                        value="Romance" 
-                                        checked={this.state.movie_genre==='Romance'} 
-                                        onChange={this.onChangeMovieGenre}
-                                        />
-                                <label className="form-check-label">Romance</label>
-                            </div>
-                            <br></br><br></br>
-                            <div className="form-group">
-                                <input type="submit" value="Update Movie" className="btn btn-primary">
-                                </input>
-                            </div>
-                    </div>
-                </form> 
+                </div>
+                
             </div>
         )
     }

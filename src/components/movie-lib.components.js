@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import pen from './pencil.png';
+import bin from './bin.png';
 
-// containign jsx code being returned
+// containing jsx code being returned
 const Movie = props => (
     <tr>
         {/* props.movie is getting passed in */}
@@ -11,9 +13,17 @@ const Movie = props => (
         <td className={props.movie.movie_genre ? 'completed' : ''}>{props.movie.movie_genre}</td>
         <td>
             {/* link to movie to edit */}
-            <Link to={"/edit/" + props.movie._id}>
-                Edit
+            <Link to={"/edit/" + props.movie._id} id="edit_link">
+            {/* <i className="glyphicon glyphicon-pencil"></i> */}'
+            <img src={pen} alt="pen" id="edit_icon"></img>
             </Link>
+
+              {/* link to movie to edit */}
+              <Link to={''} id="delete_link">
+            {/* <i className="glyphicon glyphicon-pencil"></i> */}'
+            <img src={bin} alt="delete" id="delete_icon"></img>
+            </Link>    
+
         </td>
     </tr>
 )
@@ -35,7 +45,7 @@ export default class MovieLib extends Component {
         axios.get('http://localhost:4000/movies/')
         // callback function
             .then(response => {
-                // set it to data beging deliveiverd with respone object
+                // set it to data being deliveiverd with response object
                 this.setState({movies: response.data});
             }) 
             .catch(function(error){
@@ -53,8 +63,6 @@ export default class MovieLib extends Component {
              })
     }
 
-
-
     movieList() {
         // used to iterate over the elements in movies array
         // i = index
@@ -68,26 +76,32 @@ export default class MovieLib extends Component {
     // JSX = XML/HTML-like syntax used by React that extends ECMAScript
     render() {
         return (
-            <div className="container">
+            <div className="container" style={{marginTop:80}}>
                 <div className="row justify-content-center">
-                <h2>Movie List</h2>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Year</th>
-                            <th>Genre</th>
-                            {/* allows user to interact with items */}
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* needed to output list of movies */}
-                        { this.movieList() }
-                    </tbody>
-                </table>
+                    <div className="col-md-8">
+                       <h3>Movies<Link to="/create" className="btn btn-success" id="create_btn">Create Movie</Link></h3>
+                    </div>
                 </div>
-              
+                <div className="row justify-content-center">
+                <div className="col-md-8">
+                    <table className="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Year</th>
+                                <th>Genre</th>
+                                {/* allows user to interact with items */}
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* needed to output list of movies */}
+                            { this.movieList() }
+                        </tbody>
+                    </table>
+                </div>
+                 
+                </div>
             </div>
         )
     }

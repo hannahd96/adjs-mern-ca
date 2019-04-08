@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+
 export default class CreateMovie extends Component {
 
 constructor(props){
@@ -79,8 +81,13 @@ constructor(props){
 
     render() {
         return (
-            <div className="container" style={{marginTop: 20}}>
-                <h2>Create New Movie Object</h2>
+            <div className="container"  style={{marginTop:100}}>
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+                    <h3 className="movie-header">Create Movie</h3>
+                    
+                    <br>
+                    </br>
                 {/* binding onsubmit event from the form to be handled 
                 by the onsubmit method of the component*/}
                 <form onSubmit={this.onSubmit}>
@@ -136,10 +143,17 @@ constructor(props){
                             <label className="form-check-label">Romance</label>
                         </div>
                     </div>
-                    <div className="form-group">
-                        <input type="submit" value="Submit" className="btn btn-primary" />
+                    <br></br>
+                        <div className="form-group">
+                            <Link to="/" className="btn btn-warning" id="cancel_btn">Cancel</Link>
+                            <input type="submit" value="Submit" className="btn btn-primary" />
+                        </div>
+                     </form>
+                     
+                        
+
                     </div>
-                </form>
+                </div>
             </div>
         )
     }
