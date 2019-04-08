@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const movieRoutes = express.Router();
-const PORT = 4000;
+// allows heroku to use whatever port it wants
+const PORT = process.env.port || 4000;
 
 let Movie = require('./movie.model');
 
@@ -17,9 +18,14 @@ app.use(cors());
 // json method called from bodyParser instance
 app.use(bodyParser.json());
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static("build"));
+}
+
 // used to connect to mongodb database
 // mongodb listening on port 27017 / table name is movies
-mongoose.connect('mongodb://127.0.0.1:27017/movies', { useNewUrlParser: true });
+mongoose.connect('mongodb://user:Aircraft555@ds135036.mlab.com:35036/heroku_25wk23bl', { useNewUrlParser: true });
 // retrieve ref to connection object
 const connection = mongoose.connection;
 
