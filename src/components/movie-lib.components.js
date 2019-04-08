@@ -42,7 +42,7 @@ export default class MovieLib extends Component {
     // request backend and retrieve list of movies
     componentDidMount(){
         // initliase http get request
-        axios.get('http://localhost:4000/movies/')
+        axios.get('/')
         // callback function
             .then(response => {
                 // set it to data being deliveiverd with response object
@@ -52,6 +52,7 @@ export default class MovieLib extends Component {
                 console.log(error);
             })
     }
+// http://localhost:4000/movies/
 
     componentDidUpdate(){
          axios.get('http://localhost:4000/movies/')

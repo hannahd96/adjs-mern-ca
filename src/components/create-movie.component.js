@@ -62,7 +62,7 @@ constructor(props){
         // make axios call (calls post method from axios library)
         // pass in string containing URL of endpoint of backend server
         // that endpoint accepts incoming POST requests which contain data of a new movie oject
-        axios.post('http://localhost:4000/movies/add', newMovie)
+        axios.post('/add', newMovie)
             // attach a 'then' call which is activated once the response arrives
             // recieves argument which is res (response object)
             .then(res => console.log(res.data));

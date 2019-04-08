@@ -24,7 +24,6 @@ if (process.env.NODE_ENV === "production"){
 }
 
 // used to connect to mongodb database
-// mongodb listening on port 27017 / table name is movies
 mongoose.connect('mongodb://user:Aircraft555@ds135036.mlab.com:35036/heroku_25wk23bl', { useNewUrlParser: true });
 // retrieve ref to connection object
 const connection = mongoose.connection;
